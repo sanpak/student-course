@@ -13,8 +13,12 @@ class Student
   end
 
   def enroll(new_course)
-    @courses << new_course
-    @courses[-1].students << self
+    if conflicts_with?(course)
+      raise "already enrolled"
+    else
+      @courses << new_course
+      @courses[-1].students << self
+    end
   end
 
   def courses
