@@ -13,11 +13,12 @@ class Student
   end
 
   def enroll(new_course)
-    if conflicts_with?(course)
-      raise "already enrolled"
-    else
-      @courses << new_course
+    conflicts = @courses.select { |course| new_course.conflicts_with?(course) }
+    if conflicts.empty?
+      @courses << new_course unless @courses.include?(new_course)
       @courses[-1].students << self
+    else
+      raise "already enrolled"
     end
   end
 

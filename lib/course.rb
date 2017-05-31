@@ -57,6 +57,7 @@ class Course
       @num_of_credits = num_of_credits
       @days = days
       @time_block = time_block
+      @students = []
     end
 
     def conflicts_with?(course)
@@ -67,11 +68,11 @@ class Course
     end
 
     def students
-      @students = []
+      @students
     end
 
     def add_student(student)
-      @course << student
+      student.enroll(self)
     end
 
     def name
