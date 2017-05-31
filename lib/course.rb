@@ -59,6 +59,13 @@ class Course
       @time_block = time_block
     end
 
+    def conflicts_with?(course)
+      course.days.each do |day|
+        return true if self.days.include?(day) && course.time_block == self.time_block
+      end
+        return false
+    end
+
     def students
       @students = []
     end

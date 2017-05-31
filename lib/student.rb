@@ -14,9 +14,7 @@ class Student
 
   def enroll(new_course)
     @courses << new_course
-    @courses.each do |course|
-      @courses[-1].students << self
-    end
+    @courses[-1].students << self
   end
 
   def courses
@@ -24,8 +22,10 @@ class Student
   end
 
   def course_load
-    @hash = Hash.new
-    @hash[@courses.department] = @courses.credits
+    @hash = Hash.new(0)
+    (0...@courses.length).each do |idx|
+      @hash[@courses[idx].department] += @courses[idx].credits
+    end
     @hash
   end
 end
