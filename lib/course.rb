@@ -48,7 +48,30 @@
 # * Update `Student#enroll` so that you raise an error if a `Student`
 #   enrolls in a new course that conflicts with an existing course time.
 #     * May want to write a `Student#has_conflict?` method to help.
-
+require_relative 'student'
 class Course
+    attr_accessor :course_name, :department, :num_of_credits, :days, :time_block
+    def initialize(course_name,department,num_of_credits,days = nil,time_block = nil)
+      @course_name = course_name
+      @department = department
+      @num_of_credits = num_of_credits
+      @days = days
+      @time_block = time_block
+    end
 
+    def students
+      @students = []
+    end
+
+    def add_student(student)
+      @course << student
+    end
+
+    def name
+      @course_name
+    end
+
+    def credits
+      @num_of_credits
+    end
 end
